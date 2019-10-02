@@ -16,7 +16,7 @@ def overrelaxation(no_intervals, precision, charge_density, relax_param):
                 solution[i, j] = old[i, j] +relax_param*(0.25*(old[i+1, j]+solution[i-1, j]+old[i, j+1]+solution[i, j-1])+charge[i, j]-old[i, j])                                        
         current_precision = abs(np.max(old-solution))
         iteration+=1
-    return solution#, iteration
+    return solution
 
 def gauss_seidel(no_intervals, precision, charge_density):
     import numpy as np
@@ -37,7 +37,7 @@ def gauss_seidel(no_intervals, precision, charge_density):
         
         current_precision = np.max(old-solution)
         iteration+=1
-    return solution#, iteration
+    return solution
 
 def simple(no_intervals, precision, charge_density):
     import numpy as np
@@ -58,5 +58,5 @@ def simple(no_intervals, precision, charge_density):
         solution[:, no_intervals-1]=0                
         current_precision = np.max(old-solution)
         iteration+=1
-    return solution#, iteration
+    return solution
     
