@@ -46,7 +46,7 @@ def simple(no_intervals, precision, charge_density):
     charge = np.pi*(1./no_intervals**2)*charge_density    
     solution = np.zeros((no_intervals, no_intervals), float)     
     
-    current_precision = 1.0
+    current_precision = 1
     iteration = 1    
     
     while current_precision>precision:
