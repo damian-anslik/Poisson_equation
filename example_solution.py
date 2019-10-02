@@ -20,12 +20,14 @@ def set_charge_region(radius):
                 charge_region[i, j] = 1
     return charge_region
     
-def set_total_density(num_vertices=500, radius=0.5, charge=5):
+def set_total_density(num_vertices=500, radius=0.5, charge=5, distance=0.15):
+    radius*=num_vertices*0.5
     #Creates the total charge distribution    
     density= np.zeros((num_vertices, num_vertices), float)
     plus_density= charge/(np.pi*radius**2)
-    plus_position = int(0.4*num_vertices)
-    minus_position = int(0.6*num_vertices)
+    offset_from_center = distance/2*np.cos(np.deg2rad(45))
+    plus_position = int((0.5-offset_from_center)*num_vertices)
+    minus_position = int((0.5+offset_from_center)*num_vertices)
     charge_region = set_charge_region(radius)*plus_density    
     density[plus_position-radius:plus_position+(radius+1), plus_position-radius:plus_position+(radius+1)] = charge_region    
     density[minus_position-radius:minus_position+(radius+1), minus_position-radius:minus_position+(radius+1)] = -1*charge_region
